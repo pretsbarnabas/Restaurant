@@ -1,39 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const RestaurantModel = require("../models/restaurant.model")
+const RestaurantController = require("../controllers/restaurant.controller")
 
-router.post('/', async (req, res) => {
+router.post('/', RestaurantController.createRestaurant)
 
-    const data = new RestaurantModel(req.body)
+router.get('/', RestaurantController.getRestaurants)
 
-    try {
-        const dataToSave = await data.save();
-        res.status(200).json(dataToSave)
-    }
-    catch (error) {
-        res.status(400).json({ message: error.message })
-    }
-})
-
-router.get('/', async (req, res) => {
-    try {
-        const data = await RestaurantModel.find();
-        res.json(data)
-    }
-    catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
-
-router.get('/:id', async (req, res) => {
-    try {
-        const data = await RestaurantModel.findById(req.params.id);
-        res.json(data)
-    }
-    catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
+router.get('/:id', RestaurantController.getRestaurantById)
 
 router.patch('/:id', async (req, res) => {
     try {

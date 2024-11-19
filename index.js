@@ -24,5 +24,7 @@ app.use(express.json())
 app.use('/api', restaurantRoutes);
 
 app.listen(3000, () => {
-  console.log(`Server started at ${8000}`);
+  console.log(`Server started at ${3000}`);
 });
+
+module.exports = app
