@@ -46,4 +46,30 @@ module.exports = class RestaurantController{
             res.status(500).json({ message: error.message })
         }
     }
+
+    static async deleteRestaurantById(req,res,next){
+        try {
+            const id = req.params.id;
+            const data = await RestaurantModel.findByIdAndDelete(id)
+            res.send(`Document with ${data.name} has been deleted..`)
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message })
+        }
+    }
+
+    static async patchRestaurantById(req,res,next){
+        try {
+            const id = req.params.id;
+            const updatedData = req.body;
+            const options = { new: true };
+            const result = await RestaurantModel.findByIdAndUpdate(
+                id, updatedData, options
+            )
+            res.send(result)
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message })
+        }
+    }
 }

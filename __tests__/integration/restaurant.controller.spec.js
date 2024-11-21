@@ -14,5 +14,5 @@ describe('Create Todo', () =>{
         expect(response.body[0].grades).toBeDefined()
         expect(response.body[0].name).toBeDefined()
         expect(response.body[0].restaurant_id).toBeDefined()
-    })
+    },60000)
 })

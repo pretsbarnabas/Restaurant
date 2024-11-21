@@ -4,7 +4,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const restaurantRoutes = require("./routes/restaurant");
 
-mongoose.set("strictQuery", true);
 const connString = process.env.DATABASE_URL;
 
 mongoose.connect(connString);
@@ -22,9 +21,5 @@ database.once("connected", () => {
 const app = express();
 app.use(express.json())
 app.use('/api', restaurantRoutes);
-
-app.listen(3000, () => {
-  console.log(`Server started at ${3000}`);
-});
 
 module.exports = app
