@@ -51,7 +51,12 @@ module.exports = class RestaurantController{
         try {
             const id = req.params.id;
             const data = await RestaurantModel.findByIdAndDelete(id)
-            res.send(`Document with ${data.name} has been deleted..`)
+            if(data){
+                res.send(`Document with ${data.name} has been deleted..`)
+            }
+            else{
+                res.status(404).send()
+            }
         }
         catch (error) {
             res.status(400).json({ message: error.message })

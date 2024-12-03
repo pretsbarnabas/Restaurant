@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
-const restaurantSchema = new mongoose.Schema({
+const Schema = new mongoose.Schema({
     address: {
+        _id: false,
         required: true,
         type: {
             building: String,
@@ -20,6 +21,7 @@ const restaurantSchema = new mongoose.Schema({
         type: String
     },
     grades: {
+        _id:false,
         required: true,
         type: [{ date: Date, grade: String, score: Number }]
     },
@@ -32,4 +34,5 @@ const restaurantSchema = new mongoose.Schema({
         type: Number
     }
 });
-module.exports = mongoose.model("Restaurant", restaurantSchema,"restaurants");
+
+module.exports = mongoose.model("Restaurant", Schema,"restaurants");
