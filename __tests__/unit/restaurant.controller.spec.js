@@ -132,6 +132,7 @@ describe("Patch Restaurant by ID",()=>{
         expect(RestaurantModel.findByIdAndUpdate).toHaveBeenCalledWith("673ee16fb4253126d6f58c79",{},{"new":true})
     })
     it("should return 200 when succesfully patching",async()=>{
+        RestaurantModel.findByIdAndUpdate.mockReturnValue("pass");
         await RestaurantController.patchRestaurantById(req,res,next)
         expect(res.statusCode).toBe(200)
         expect(res._isEndCalled()).toBeTruthy()

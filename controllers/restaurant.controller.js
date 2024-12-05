@@ -71,7 +71,12 @@ module.exports = class RestaurantController{
             const result = await RestaurantModel.findByIdAndUpdate(
                 id, updatedData, options
             )
-            res.send(result)
+            if(result){
+                res.send(result)
+            }
+            else{
+                res.status(404).send()
+            }
         }
         catch (error) {
             res.status(400).json({ message: error.message })
